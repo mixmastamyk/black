@@ -1,4 +1,4 @@
-![Black Logo](https://raw.githubusercontent.com/psf/black/master/docs/_static/logo2-readme.png)
+
 <h2 align="center">The Uncompromising Code Formatter</h2>
 
 <p align="center">
@@ -12,6 +12,44 @@
 </p>
 
 > “Any color you like.”
+
+<fieldset><h2>Python Nero</h2>
+
+<p>This is a minor patch to <tt>black</tt> called <tt>nero</tt> that prefers
+single-quotes.
+(Nero is black in Italian.)
+Why?
+
+<ul>
+    <li>Both types of quotes mean the same thing in Python.</li>
+    <li>Single quotes are <i>easier to type</i> on keyboard
+    layouts that most programmers use (English).</li>
+    <li>Single quotes introduce less visual noise, so are <i>easier to read</i>:</li>
+    </ul>
+
+<pre>
+     {"firstName": "Jane", "lastName": "Doe", "hobbies": ["running", "sky diving",
+     "singing"], "age": 35, "children": [ { "firstName": "Alice", "age": 6 }, {
+     "firstName": "Bob", "age": 8 } ] }
+     
+     {'firstName': 'Jane', 'lastName': 'Doe', 'hobbies': ['running', 'sky diving',
+     'singing'], 'age': 35, 'children': [{'firstName': 'Alice', 'age': 6}, {
+     'firstName': 'Bob', 'age': 8}]}
+    </pre>
+
+<ul>
+    <li>The REPL uses them for that reason as well.</li>
+    <li>While apostrophes are a thing,
+    they are rarely used in messages to the user.
+    Sometimes messages need to be "quoted" as well.  Result: mostly a wash.
+    </li>
+    <li>These reasons are more important to me than
+    <a href="https://black.readthedocs.io/en/stable/the_black_code_style.html#strings">
+    mitigating poor fonts or keeping consistency with C.</a>
+    </li>
+    </ul>
+
+</fieldset>
 
 
 *Black* is the uncompromising Python code formatter.  By using it, you

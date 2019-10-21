@@ -15,23 +15,22 @@ def get_long_description() -> str:
 
 
 setup(
-    name="black",
-    use_scm_version={
-        "write_to": "_version.py",
-        "write_to_template": 'version = "{version}"\n',
-    },
-    description="The uncompromising code formatter.",
+    name="nero",
+    version="19.3b4",
+    description="The uncompromising code formatter.  Single quotes version.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    keywords="automation formatter yapf autopep8 pyfmt gofmt rustfmt",
-    author="Łukasz Langa",
-    author_email="lukasz@langa.pl",
-    url="https://github.com/psf/black",
+    keywords="automation formatter yapf autopep8 pyfmt gofmt rustfmt"
+             "black single quotes",
+    author="black authors",
+    author_email="",
+    url="https://github.com/mixmastamyk/nero",
     license="MIT",
     py_modules=["black", "blackd", "_version"],
     packages=["blib2to3", "blib2to3.pgen2"],
     package_data={"blib2to3": ["*.txt"]},
     python_requires=">=3.6",
+    scripts=["nero"],
     zip_safe=False,
     install_requires=[
         "click>=6.5",
