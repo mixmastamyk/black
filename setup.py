@@ -16,7 +16,7 @@ def get_long_description() -> str:
 
 setup(
     name="nero",
-    version="19.3b4",
+    version="19.3b5",
     description="The uncompromising code formatter.  Single quotes version.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
@@ -33,6 +33,7 @@ setup(
     scripts=["nero"],
     zip_safe=False,
     install_requires=[
+        "black",
         "click>=6.5",
         "attrs>=18.1.0",
         "appdirs",
