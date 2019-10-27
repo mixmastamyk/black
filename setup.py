@@ -16,11 +16,11 @@ def get_long_description() -> str:
 
 setup(
     name="nero",
-    version="19.3b5",
+    version="19.3b6",
     description="The uncompromising code formatter.  Single quotes version.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    keywords="automation formatter yapf autopep8 pyfmt gofmt rustfmt"
+    keywords="automation formatter yapf autopep8 pyfmt gofmt rustfmt "
              "black single quotes",
     author="black authors",
     author_email="",
