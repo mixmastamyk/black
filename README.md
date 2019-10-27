@@ -48,7 +48,7 @@ Why?
     mitigating poor fonts or keeping consistency with C.</a>
     </li>
     </ul>
-
+    Use `nero` in place of `black` in the command-line examples below.
 </fieldset>
 
 
