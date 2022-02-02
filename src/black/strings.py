@@ -146,6 +146,7 @@ def normalize_string_prefix(s: str) -> str:
     new_prefix = (
         orig_prefix.replace("F", "f")
         .replace("B", "b")
+        .replace("R", "r")
         .replace("U", "")
         .replace("u", "")
     )
@@ -179,7 +180,7 @@ def normalize_string_quotes(s: str) -> str:
         new_quote = "'''"
     elif value[0] == "'":       # is single quoted
         orig_quote = "'"
-        new_quote = '"'
+        new_quote = "'"
     else:
         orig_quote = '"'
         new_quote = "'"
@@ -235,7 +236,7 @@ def normalize_string_quotes(s: str) -> str:
     if new_escape_count > orig_escape_count:
         return s  # Do not introduce more escaping
 
-    if new_escape_count == orig_escape_count and orig_quote == '"':
+    if new_escape_count == orig_escape_count and orig_quote == "'":
         return s  # Prefer single quotes
 
     return f"{prefix}{new_quote}{new_body}{new_quote}"
