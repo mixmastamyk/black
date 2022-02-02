@@ -14,7 +14,6 @@
 
 > “Any color you like.”
 
-<fieldset>
 <h2>Python Nero</h2>
 
 <p>This is a minor patch to <tt>black</tt> called <tt>nero</tt> that prefers
@@ -51,7 +50,8 @@ Why?
     </li>
     </ul>
     Use `nero` in place of `black` in the command-line examples below.
-</fieldset>
+
+----
 
 _Black_ is the uncompromising Python code formatter. By using it, you agree to cede
 control over minutiae of hand-formatting. In return, _Black_ gives you speed,
