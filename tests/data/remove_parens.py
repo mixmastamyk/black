@@ -1,8 +1,19 @@
-print((1))
 x = (1)
 x = (1.2)
-(x) = (3)
 
+data = (
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+).encode()
+
+async def show_status():
+    while True:
+        try:
+            if report_host:
+                data = (
+                   f"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+               ).encode()
+        except Exception as e:
+            pass
 
 def example():
     return (("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"))
@@ -43,12 +54,24 @@ def example7():
 def example8():
     return (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((None)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
-
 # output
-print(1)
 x = 1
 x = 1.2
-x = 3
+
+data = (
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+).encode()
+
+
+async def show_status():
+    while True:
+        try:
+            if report_host:
+                data = (
+                    f"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ).encode()
+        except Exception as e:
+            pass
 
 
 def example():
@@ -117,4 +140,3 @@ def example7():
 
 def example8():
     return None
-

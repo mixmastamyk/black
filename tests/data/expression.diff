@@ -11,7 +11,17 @@
  True
  False
  1
-@@ -29,63 +29,84 @@
+@@ -21,99 +21,135 @@
+ Name1 or (Name2 and Name3) or Name4
+ Name1 or Name2 and Name3 or Name4
+ v1 << 2
+ 1 >> v2
+ 1 % finished
+-1 + v2 - v3 * 4 ^ 5 ** v6 / 7 // 8
+-((1 + v2) - (v3 * 4)) ^ (((5 ** v6) / 7) // 8)
++1 + v2 - v3 * 4 ^ 5**v6 / 7 // 8
++((1 + v2) - (v3 * 4)) ^ (((5**v6) / 7) // 8)
+ not great
  ~great
  +value
  -1
@@ -19,7 +29,7 @@
  (~int) and (not ((v1 ^ (123 + v2)) | True))
 -+really ** -confusing ** ~operator ** -precedence
 -flags & ~ select.EPOLLIN and waiters.write_task is not None
-++(really ** -(confusing ** ~(operator ** -precedence)))
+++(really ** -(confusing ** ~(operator**-precedence)))
 +flags & ~select.EPOLLIN and waiters.write_task is not None
  lambda arg: None
  lambda a=True: a
@@ -61,14 +71,26 @@
  []
  [1, 2, 3, 4, 5, 6, 7, 8, 9, (10 or A), (11 or B), (12 or C)]
 -[1, 2, 3,]
-+[1, 2, 3]
++[
++    1,
++    2,
++    3,
++]
  [*a]
  [*range(10)]
 -[*a, 4, 5,]
 -[4, *a, 5,]
 -[this_is_a_very_long_variable_which_will_force_a_delimiter_split, element, another, *more]
-+[*a, 4, 5]
-+[4, *a, 5]
++[
++    *a,
++    4,
++    5,
++]
++[
++    4,
++    *a,
++    5,
++]
 +[
 +    this_is_a_very_long_variable_which_will_force_a_delimiter_split,
 +    element,
@@ -76,15 +98,19 @@
 +    *more,
 +]
  {i for i in (1, 2, 3)}
- {(i ** 2) for i in (1, 2, 3)}
+-{(i ** 2) for i in (1, 2, 3)}
 -{(i ** 2) for i, _ in ((1, 'a'), (2, 'b'), (3, 'c'))}
-+{(i ** 2) for i, _ in ((1, "a"), (2, "b"), (3, "c"))}
- {((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3)}
+-{((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3)}
++{(i**2) for i in (1, 2, 3)}
++{(i**2) for i, _ in ((1, "a"), (2, "b"), (3, "c"))}
++{((i**2) + j) for i in (1, 2, 3) for j in (1, 2, 3)}
  [i for i in (1, 2, 3)]
- [(i ** 2) for i in (1, 2, 3)]
+-[(i ** 2) for i in (1, 2, 3)]
 -[(i ** 2) for i, _ in ((1, 'a'), (2, 'b'), (3, 'c'))]
-+[(i ** 2) for i, _ in ((1, "a"), (2, "b"), (3, "c"))]
- [((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3)]
+-[((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3)]
++[(i**2) for i in (1, 2, 3)]
++[(i**2) for i, _ in ((1, "a"), (2, "b"), (3, "c"))]
++[((i**2) + j) for i in (1, 2, 3) for j in (1, 2, 3)]
  {i: 0 for i in (1, 2, 3)}
 -{i: j for i, j in ((1, 'a'), (2, 'b'), (3, 'c'))}
 +{i: j for i, j in ((1, "a"), (2, "b"), (3, "c"))}
@@ -118,14 +144,25 @@
  call(**self.screen_kwargs)
  call(b, **self.screen_kwargs)
  lukasz.langa.pl
-@@ -94,23 +115,23 @@
- 1.0 .real
+ call.me(maybe)
+-1 .real
+-1.0 .real
++(1).real
++(1.0).real
  ....__class__
  list[str]
  dict[str, int]
  tuple[str, ...]
--tuple[str, int, float, dict[str, int],]
 +tuple[str, int, float, dict[str, int]]
+ tuple[
+-    str, int, float, dict[str, int]
+-]
+-tuple[str, int, float, dict[str, int],]
++    str,
++    int,
++    float,
++    dict[str, int],
++]
  very_long_variable_name_filters: t.List[
      t.Tuple[str, t.Union[str, t.List[t.Optional[str]]]],
  ]
@@ -146,7 +183,7 @@
  slice[0:1:2]
  slice[:]
  slice[:-1]
-@@ -134,113 +155,171 @@
+@@ -137,118 +173,199 @@
  numpy[-(c + 1) :, d]
  numpy[:, l[-2]]
  numpy[:, ::-1]
@@ -157,16 +194,17 @@
 +{"2.7": dead, "3.7": long_live or die_hard}
 +{"2.7", "3.6", "3.7", "3.8", "3.9", "4.0" if gilectomy else "3.10"}
  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 or A, 11 or B, 12 or C]
--(SomeName)
-+SomeName
+ (SomeName)
  SomeName
  (Good, Bad, Ugly)
  (i for i in (1, 2, 3))
- ((i ** 2) for i in (1, 2, 3))
+-((i ** 2) for i in (1, 2, 3))
 -((i ** 2) for i, _ in ((1, 'a'), (2, 'b'), (3, 'c')))
-+((i ** 2) for i, _ in ((1, "a"), (2, "b"), (3, "c")))
- (((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3))
- (*starred)
+-(((i ** 2) + j) for i in (1, 2, 3) for j in (1, 2, 3))
++((i**2) for i in (1, 2, 3))
++((i**2) for i, _ in ((1, "a"), (2, "b"), (3, "c")))
++(((i**2) + j) for i in (1, 2, 3) for j in (1, 2, 3))
+ (*starred,)
 -{"id": "1","type": "type","started_at": now(),"ended_at": now() + timedelta(days=10),"priority": 1,"import_session_id": 1,**kwargs}
 +{
 +    "id": "1",
@@ -187,6 +225,7 @@
  g = 1, *"ten"
 -what_is_up_with_those_new_coord_names = (coord_names + set(vars_to_create)) + set(vars_to_remove)
 -what_is_up_with_those_new_coord_names = (coord_names | set(vars_to_create)) - set(vars_to_remove)
+-result = session.query(models.Customer.id).filter(models.Customer.account_id == account_id, models.Customer.email == email_address).order_by(models.Customer.id.asc()).all()
 -result = session.query(models.Customer.id).filter(models.Customer.account_id == account_id, models.Customer.email == email_address).order_by(models.Customer.id.asc(),).all()
 +what_is_up_with_those_new_coord_names = (coord_names + set(vars_to_create)) + set(
 +    vars_to_remove
@@ -200,6 +239,16 @@
 +        models.Customer.account_id == account_id, models.Customer.email == email_address
 +    )
 +    .order_by(models.Customer.id.asc())
++    .all()
++)
++result = (
++    session.query(models.Customer.id)
++    .filter(
++        models.Customer.account_id == account_id, models.Customer.email == email_address
++    )
++    .order_by(
++        models.Customer.id.asc(),
++    )
 +    .all()
 +)
  Ø = set()
@@ -316,6 +365,9 @@
 -    return True
 -if (
 -    ~ aaaaaaaaaaaaaaaa.a + aaaaaaaaaaaaaaaa.b - aaaaaaaaaaaaaaaa.c * aaaaaaaaaaaaaaaa.d @ aaaaaaaaaaaaaaaa.e | aaaaaaaaaaaaaaaa.f & aaaaaaaaaaaaaaaa.g % aaaaaaaaaaaaaaaa.h ^ aaaaaaaaaaaaaaaa.i << aaaaaaaaaaaaaaaa.k >> aaaaaaaaaaaaaaaa.l ** aaaaaaaaaaaaaaaa.m // aaaaaaaaaaaaaaaa.n
+-):
+-    return True
+-aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa - aaaaaaaaaaaaaaaa * (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa) / (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
 +a = (
 +    aaaa.bbbb.cccc.dddd.eeee.ffff.gggg.hhhh.iiii.jjjj.kkkk.llll.mmmm.nnnn.oooo.pppp
 +    in qqqq.rrrr.ssss.tttt.uuuu.vvvv.xxxx.yyyy.zzzz
@@ -370,13 +422,13 @@
 +    return True
 +if (
 +    ~aaaa.a + aaaa.b - aaaa.c * aaaa.d / aaaa.e
-+    | aaaa.f & aaaa.g % aaaa.h ^ aaaa.i << aaaa.k >> aaaa.l ** aaaa.m // aaaa.n
++    | aaaa.f & aaaa.g % aaaa.h ^ aaaa.i << aaaa.k >> aaaa.l**aaaa.m // aaaa.n
 +):
 +    return True
 +if (
 +    ~aaaaaaaa.a + aaaaaaaa.b - aaaaaaaa.c @ aaaaaaaa.d / aaaaaaaa.e
 +    | aaaaaaaa.f & aaaaaaaa.g % aaaaaaaa.h
-+    ^ aaaaaaaa.i << aaaaaaaa.k >> aaaaaaaa.l ** aaaaaaaa.m // aaaaaaaa.n
++    ^ aaaaaaaa.i << aaaaaaaa.k >> aaaaaaaa.l**aaaaaaaa.m // aaaaaaaa.n
 +):
 +    return True
 +if (
@@ -386,8 +438,29 @@
 +    | aaaaaaaaaaaaaaaa.f & aaaaaaaaaaaaaaaa.g % aaaaaaaaaaaaaaaa.h
 +    ^ aaaaaaaaaaaaaaaa.i
 +    << aaaaaaaaaaaaaaaa.k
-+    >> aaaaaaaaaaaaaaaa.l ** aaaaaaaaaaaaaaaa.m // aaaaaaaaaaaaaaaa.n
- ):
-     return True
++    >> aaaaaaaaaaaaaaaa.l**aaaaaaaaaaaaaaaa.m // aaaaaaaaaaaaaaaa.n
++):
++    return True
++(
++    aaaaaaaaaaaaaaaa
++    + aaaaaaaaaaaaaaaa
++    - aaaaaaaaaaaaaaaa
++    * (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
++    / (aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa)
++)
+ aaaaaaaaaaaaaaaa + aaaaaaaaaaaaaaaa
+-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa >> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa << aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++(
++    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    >> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    << aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++)
+ bbbb >> bbbb * bbbb
+-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ^bbbb.a & aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa^aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++(
++    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    ^ bbbb.a & aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++    ^ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
++)
  last_call()
  # standalone comment at ENDMARKER

@@ -63,7 +63,7 @@ def inline_comments_in_brackets_ruin_everything():
         parameters.children = [
             children[0],  # (1
             body,
-            children[-1],  # )1
+            children[-1]  # )1
         ]
         parameters.children = [
             children[0],
@@ -142,18 +142,24 @@ short
         syms.simple_stmt,
         [
             Node(statement, result),
-            Leaf(token.NEWLINE, '\n'),  # FIXME: \r\n?
+            Leaf(token.NEWLINE, '\n')  # FIXME: \r\n?
         ],
     )
 
 CONFIG_FILES = [CONFIG_FILE, ] + SHARED_CONFIG_FILES + USER_CONFIG_FILES  # type: Final
+
+class Test:
+    def _init_host(self, parsed) -> None:
+        if (parsed.hostname is None or  # type: ignore
+                not parsed.hostname.strip()):
+            pass
 
 #######################
 ### SECTION COMMENT ###
 #######################
 
 
-instruction()
+instruction()#comment with bad spacing
 
 # END COMMENTS
 # MORE END COMMENTS
@@ -310,14 +316,27 @@ short
     )
 
 
-CONFIG_FILES = [CONFIG_FILE] + SHARED_CONFIG_FILES + USER_CONFIG_FILES  # type: Final
+CONFIG_FILES = (
+    [
+        CONFIG_FILE,
+    ]
+    + SHARED_CONFIG_FILES
+    + USER_CONFIG_FILES
+)  # type: Final
+
+
+class Test:
+    def _init_host(self, parsed) -> None:
+        if parsed.hostname is None or not parsed.hostname.strip():  # type: ignore
+            pass
+
 
 #######################
 ### SECTION COMMENT ###
 #######################
 
 
-instruction()
+instruction()  # comment with bad spacing
 
 # END COMMENTS
 # MORE END COMMENTS
