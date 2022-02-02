@@ -72,10 +72,7 @@ else:
 
 setup(
     name="nero",
-    use_scm_version={
-        "write_to": "src/_black_version.py",
-        "write_to_template": 'version = "{version}"\n',
-    },
+    version="1.00.20220202",
     description="The uncompromising code formatter. Single Quotes version.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
