@@ -71,7 +71,7 @@ else:
     ext_modules = []
 
 setup(
-    name="black",
+    name="nero",
     use_scm_version={
         "write_to": "src/_black_version.py",
         "write_to_template": 'version = "{version}"\n',
@@ -131,9 +131,9 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "black=black:patched_main",
-            "blackd=blackd:patched_main [d]",
-            "black-primer=black_primer.cli:main",
+            "nero=black:patched_main",
+            "nerod=blackd:patched_main [d]",
+            "nero-primer=black_primer.cli:main",
         ]
     },
 )

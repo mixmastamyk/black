@@ -165,24 +165,25 @@ def _cached_compile(pattern: str) -> Pattern[str]:
 
 
 def normalize_string_quotes(s: str) -> str:
-    """Prefer double quotes but only if it doesn't cause more escaping.
+    """Prefer single quotes but only if it doesn't cause more escaping.
 
     Adds or removes backslashes as appropriate. Doesn't parse and fix
     strings nested in f-strings.
     """
     value = s.lstrip(STRING_PREFIX_CHARS)
-    if value[:3] == '"""':
+    if value[:3] == "'''":      # triple-single
         return s
 
-    elif value[:3] == "'''":
-        orig_quote = "'''"
-        new_quote = '"""'
-    elif value[0] == '"':
-        orig_quote = '"'
-        new_quote = "'"
-    else:
+    elif value[:3] == '"""':    # triple-double
+        orig_quote = '"""'
+        new_quote = "'''"
+    elif value[0] == "'":       # is single quoted
         orig_quote = "'"
         new_quote = '"'
+    else:
+        orig_quote = '"'
+        new_quote = "'"
+
     first_quote_pos = s.find(orig_quote)
     if first_quote_pos == -1:
         return s  # There's an internal error
@@ -209,6 +210,7 @@ def normalize_string_quotes(s: str) -> str:
             s = f"{prefix}{orig_quote}{body}{orig_quote}"
         new_body = sub_twice(escaped_orig_quote, rf"\1\2{orig_quote}", new_body)
         new_body = sub_twice(unescaped_new_quote, rf"\1\\{new_quote}", new_body)
+
     if "f" in prefix.casefold():
         matches = re.findall(
             r"""
@@ -224,15 +226,16 @@ def normalize_string_quotes(s: str) -> str:
                 # Do not introduce backslashes in interpolated expressions
                 return s
 
-    if new_quote == '"""' and new_body[-1:] == '"':
+    if new_quote == "'''" and new_body[-1:] == "'":
         # edge case:
-        new_body = new_body[:-1] + '\\"'
+        new_body = new_body[:-1] + "\\'"
+
     orig_escape_count = body.count("\\")
     new_escape_count = new_body.count("\\")
     if new_escape_count > orig_escape_count:
         return s  # Do not introduce more escaping
 
     if new_escape_count == orig_escape_count and orig_quote == '"':
-        return s  # Prefer double quotes
+        return s  # Prefer single quotes
 
     return f"{prefix}{new_quote}{new_body}{new_quote}"
