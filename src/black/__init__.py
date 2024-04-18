@@ -1412,7 +1412,7 @@ def patch_click() -> None:
     try:
         from click import core
         from click import _unicodefun
-    except ModuleNotFoundError:
+    except (ModuleNotFoundError, ImportError):
         return
 
     for module in (core, _unicodefun):
