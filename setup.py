@@ -72,7 +72,7 @@ else:
 
 setup(
     name="nero",
-    version="1.00.20220202",
+    version="1.01",
     description="The uncompromising code formatter. Single Quotes version.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
